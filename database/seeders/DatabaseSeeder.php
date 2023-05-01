@@ -14,12 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'agent']);
-        Role::create(['name' => 'user']);
+        User::factory()->createOne(['name' => 'Usuário Admin', 'email' => 'admin@admin.com']);
+        User::factory()->createOne(['name' => 'Usuário Agent', 'email' => 'agent@agent.com']);
+        User::factory()->createOne(['name' => 'Usuário Normal', 'email' => 'user@auser.com']);
 
-        User::factory()->createOne(['name' => 'Usuário Admin', 'email' => 'admin@admin.com'])->assignRole('admin');
-        User::factory()->create(['name' => 'Usuário Agent', 'email' => 'agent@agent.com'])->assignRole('agent');
-        User::factory()->create(['name' => 'Usuário Normal', 'email' => 'user@auser.com'])->assignRole('user');
+        $this->call(RoleSeeder::class);
+        $this->call(TagSeeder::class);
+
+        User::factory(10)->create()->each(fn ($user) => $user->assignRole('user'));
     }
 }
