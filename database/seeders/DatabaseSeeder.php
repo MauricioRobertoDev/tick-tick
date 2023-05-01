@@ -14,9 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->createOne(['name' => 'Usuário Admin', 'email' => 'admin@admin.com']);
-        User::factory()->createOne(['name' => 'Usuário Agent', 'email' => 'agent@agent.com']);
-        User::factory()->createOne(['name' => 'Usuário Normal', 'email' => 'user@auser.com']);
+        $password = bcrypt('12345678');
+        User::factory()->createOne(['name' => 'Usuário Administrador', 'email' => 'admin@email.com', 'password' => $password]);
+        User::factory()->createOne(['name' => 'Usuário Funcionário', 'email' => 'funcionario@email.com', 'password' => $password]);
+        User::factory()->createOne(['name' => 'Usuário Cliente', 'email' => 'cliente@email.com', 'password' => $password]);
 
         $this->call(RoleSeeder::class);
         $this->call(TagSeeder::class);
