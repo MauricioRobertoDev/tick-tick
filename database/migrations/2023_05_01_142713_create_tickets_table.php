@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
-            $table->enum('status', Status::cases())->default(Status::OPEN);
-            $table->enum('priority', Priority::cases())->default(Priority::LOW);
+            $table->string('status')->default(Status::OPEN->value);
+            $table->string('priority')->default(Priority::LOW->value);
             $table->foreignIdFor(Department::class)->nullable()->nullOnDelete();
             $table->foreignIdFor(User::class)->cascadeOnDelete();
             $table->foreignIdFor(User::class, 'agent_id')->nullable()->nullOnDelete();
