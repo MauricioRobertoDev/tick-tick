@@ -1,5 +1,5 @@
-<x-admin-layout>
-    <div class="py-12 bg-red-500">
+<x-app-layout>
+    <div class="bg-red-500 py-12">
         Buh
     </div>
-</x-admin-layout>
+</x-app-layout>
