@@ -36,7 +36,7 @@
             </button>
         </div>
         {{-- navigation --}}
-        <nav :class="{ '-left-64': !open }" class="group fixed top-0 left-0 flex h-screen w-64 flex-grow-0 transform flex-col items-start justify-between overflow-hidden border-r border-gray-100 bg-white transition-all duration-300 lg:relative lg:!left-0 lg:w-20 hover:lg:!w-60">
+        <nav :class="{ 'left-0': open }" class="group fixed top-0 -left-64 flex h-screen w-64 flex-grow-0 transform flex-col items-start justify-between overflow-hidden border-r border-gray-100 bg-white transition-all duration-300 lg:relative lg:!left-0 lg:w-20 hover:lg:!w-60">
             {{-- top menu items --}}
             <div>
                 <div class="relative mb-4 flex w-60 gap-2 bg-white py-7 px-6">
@@ -75,12 +75,19 @@
             {{-- bottom menu items --}}
             <div>
                 {{-- theme --}}
-                <button class="relative flex w-60 gap-2 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
-                    <span class="transform duration-300">
-                        <x-icon.sun class="w-6" />
-                    </span>
-                    <p class="font-medium transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Tema</p>
-                </button>
+                <a href="{{ route('profile.edit') }}" class="relative flex h-20 w-60 gap-5 bg-white px-5 py-5 text-gray-500 hover:bg-primary-50 hover:text-primary-500">
+
+                    @if (auth()->user()->avatar)
+                        <img src="{{ asset(auth()->user()->avatar) }}" class="h-10 w-10 flex-grow-0 rounded-md" />
+                    @else
+                        <img src="{{ asset('avatars/default.png') }}" class="h-10 w-10 flex-grow-0 rounded-md" />
+                    @endif
+
+                    <div class="flex-grow truncate whitespace-nowrap text-start">
+                        <p class="truncate text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
+                        <p class="truncate text-xs font-medium text-gray-500">{{ auth()->user()->email }}</p>
+                    </div>
+                </a>
                 {{-- logout --}}
                 <a href="#" class="relative flex w-60 gap-2 bg-white px-7 py-5 text-gray-500 hover:text-red-500">
                     <x-icon.logout class="w-6" />
@@ -89,7 +96,7 @@
             </div>
         </nav>
     </div>
-    <main class="w-full flex-grow">
+    <main class="h-screen w-full flex-grow overflow-y-scroll">
         {{ $slot }}
     </main>
     @livewireScripts
