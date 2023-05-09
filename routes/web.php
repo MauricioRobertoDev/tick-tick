@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\DepartmentCreate;
+use App\Http\Livewire\DepartmentEdit;
+use App\Http\Livewire\DepartmentIndex;
 use App\Http\Livewire\TagList;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/tags', TagList::class)->name('tag.index');
+    Route::get('/departamentos', DepartmentIndex::class)->name('department.index');
+    Route::get('/departamentos/novo', DepartmentCreate::class)->name('department.create');
+    Route::get('/departamentos/editar/{id}', DepartmentEdit::class)->name('department.edit');
 });
 
 require __DIR__.'/auth.php';
