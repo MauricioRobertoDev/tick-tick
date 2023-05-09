@@ -48,6 +48,7 @@ class TagList extends Component
         $this->tag->save();
 
         $this->resetValidation();
+        session()->flash('status', 'Tag criada.');
         $this->reset('showModal', 'editedTagId');
     }
 
@@ -61,6 +62,7 @@ class TagList extends Component
     public function delete()
     {
         Tag::findOrFail($this->deleteTagId)->delete();
+        session()->flash('status', 'Tag excluída.');
         $this->reset('showDeleteModal', 'deleteTagId');
     }
 
