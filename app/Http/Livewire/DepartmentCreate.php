@@ -32,12 +32,10 @@ class DepartmentCreate extends Component
         } else {
             $this->agents[] = $agent_id;
         }
-
     }
 
     public function save()
     {
-        dd($this->agents);
         $this->validate([
             'name' => 'required|string|max:255',
             'agents' => 'array|exists:users,id',
