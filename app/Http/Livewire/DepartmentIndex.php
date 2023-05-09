@@ -26,13 +26,12 @@ class DepartmentIndex extends Component
      public function delete()
     {
         Department::findOrFail($this->deleteDepartmentId)->delete();
+        session()->flash('status', 'Departamento excluído.');
         $this->reset('showDeleteModal', 'deleteDepartmentId');
     }
 
     public function showDeleteModal($id)
     {
-
-        dd(route('department.edit', ['id' => 1]));
         $this->showDeleteModal = true;
         $this->deleteDepartmentId = $id;
     }
