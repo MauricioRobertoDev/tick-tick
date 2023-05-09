@@ -35,7 +35,7 @@ class TagList extends Component
 
     public function render()
     {
-        $tags = Tag::paginate(100);
+        $tags = Tag::paginate(20);
 
         return view('livewire.tag-list', [
             'tags' => $tags,
