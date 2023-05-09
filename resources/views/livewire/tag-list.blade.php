@@ -1,4 +1,4 @@
-<div class="mx-auto w-3/4 py-8">
+<div class="mx-auto max-w-7xl py-8">
     {{-- header --}}
     <header class="mb-12 flex w-full items-center justify-between">
         <h1 class="text-5xl font-medium">Tags</h1>
@@ -39,17 +39,17 @@
                     {{-- Show tag End --}}
                     <td class="flex gap-2 py-4 px-6">
                         @if ($editedTagId === $tag->id)
-                            <button wire:click="save()" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-green-500/20 text-green-500 transition-all duration-200 hover:border-transparent hover:bg-green-500 hover:text-white">
+                            <button wire:click="save()" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-green-500 transition-all duration-200 hover:bg-green-500/10">
                                 <x-icon.check class="w-5" />
                             </button>
-                            <button wire:click="cancelTagEdit()" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-red-100 text-red-500 transition-all duration-200 hover:border-transparent hover:bg-red-500 hover:text-white">
+                            <button wire:click="cancelTagEdit()" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-red-500 transition-all duration-200 hover:bg-red-500/10">
                                 <x-icon.close class="w-5" />
                             </button>
                         @else
-                            <button wire:click="editTag({{ $tag->id }})" class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-primary-500 transition-all duration-200 hover:border-transparent hover:bg-primary-100">
+                            <button wire:click="editTag({{ $tag->id }})" class="flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 transition-all duration-200 hover:border-transparent hover:bg-primary-500/10 hover:text-primary-500">
                                 <x-icon.edit class="w-5" />
                             </button>
-                            <button wire:click="showDeleteModal({{ $tag->id }})" class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-red-500 transition-all duration-200 hover:border-transparent hover:bg-red-100">
+                            <button wire:click="showDeleteModal({{ $tag->id }})" class="flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 transition-all duration-200 hover:border-transparent hover:bg-red-500/10 hover:text-red-500">
                                 <x-icon.trash class="w-5" />
                             </button>
                         @endif
