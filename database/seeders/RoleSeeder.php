@@ -17,9 +17,5 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'agent']);
         Role::create(['name' => 'user']);
-
-        User::find(1)->assignRole('admin');
-        User::find(2)->assignRole('agent');
-        User::find(3)->assignRole('user');
     }
 }
