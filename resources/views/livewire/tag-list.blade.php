@@ -1,7 +1,7 @@
 <div class="mx-auto max-w-7xl py-8">
     {{-- header --}}
     <header class="mb-12 flex w-full items-center justify-between">
-        <h1 class="text-5xl font-medium">Tags</h1>
+        <h1 class="text-xl font-medium lg:text-3xl">Tags</h1>
         <button wire:click="openModal()" class="flex h-10 items-center justify-center gap-1 rounded-lg bg-primary-500 px-4 text-sm uppercase text-white hover:bg-primary-600">
             <x-icon.plus class="w-5" />
             Nova tag
@@ -64,6 +64,12 @@
         <div class="rounded-b-lg border-x border-b border-gray-200 bg-white py-3 px-6">
             {!! $tags->links() !!}
         </div>
+    @endif
+
+    @if (session()->has('status'))
+        <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-green-500">
+            {{ session('status') }}
+        </p>
     @endif
 
     {{-- create modal --}}
