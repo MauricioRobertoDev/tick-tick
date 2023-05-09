@@ -1,7 +1,10 @@
-<div class="mx-auto max-w-7xl py-8">
+<div class="mx-auto max-w-7xl py-8 px-4">
     {{-- header --}}
-    <header class="mb-12 flex w-full items-center justify-between">
-        <h1 class="text-5xl font-medium">Novo departamento</h1>
+    <header class="mb-12 flex w-full items-center gap-2 lg:gap-4">
+        <a href="{{ route('department.index') }}" class="hover:text-primary-500">
+            <x-icon.arrow-left class="h-6 w-6" />
+        </a>
+        <h1 class="text-xl font-medium lg:text-3xl">Novo departamento</h1>
     </header>
 
     <div class="bg-white p-4 shadow sm:rounded-lg sm:p-8">
