@@ -44,6 +44,8 @@ class DepartmentCreate extends Component
 
         Department::create(['name' => $this->name])->agents()->attach($this->agents);
 
+        session()->flash('status', 'Departamento criado.');
+
         return redirect()->to(route('department.index'));
     }
 }
