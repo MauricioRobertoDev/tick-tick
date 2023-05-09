@@ -62,7 +62,7 @@
                     <x-icon.log class="w-6" />
                     <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Histórico</p>
                 </a>
-                <a href="#" class="relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                <a href="{{ route('department.index') }}" class="{{ request()->routeIs('department.index') ? '!text-primary-500' : '' }} relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
                     <x-icon.department class="w-6" />
                     <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Departamentos</p>
                 </a>
