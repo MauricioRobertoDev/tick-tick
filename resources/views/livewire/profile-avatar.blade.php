@@ -25,6 +25,11 @@
             @error('avatar')
                 <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
             @enderror
+            @if ($status)
+                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-green-500">
+                    {{ $status }}
+                </p>
+            @endif
             <x-primary-button type="submit" class="mt-6">{{ __('Save') }}</x-primary-button>
         </form>
     </div>

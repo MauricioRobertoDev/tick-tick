@@ -3,11 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use File;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
-use Illuminate\Support\Facades\Storage;
 
 class ProfileAvatar extends Component
 {
