@@ -37,6 +37,5 @@ class DatabaseSeeder extends Seeder
 
         User::find(1)->assignRole('admin');
         User::whereIn('id', [2,3,4,5])->each(fn($user) => $user->assignRole('agent'));
-        User::whereIn('id', [6,7,8,9])->each(fn($user) => $user->assignRole('user'));
     }
 }
