@@ -23,7 +23,7 @@ class DepartmentIndex extends Component
         ]);
     }
 
-     public function delete()
+    public function delete()
     {
         Department::findOrFail($this->deleteDepartmentId)->delete();
         session()->flash('status', 'Departamento excluído.');
