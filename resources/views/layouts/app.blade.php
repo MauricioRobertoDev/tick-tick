@@ -54,7 +54,7 @@
                     <x-icon.ticket class="w-6" />
                     <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Tickets</p>
                 </a>
-                <a href="#" class="relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                <a href="{{ route('user.index') }}" class="{{ request()->routeIs('user.index') ? '!text-primary-500' : '' }}relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
                     <x-icon.users class="w-6" />
                     <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Usuários</p>
                 </a>
