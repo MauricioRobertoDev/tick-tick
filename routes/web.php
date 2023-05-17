@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Stats;
+use App\Models\GameMatch;
 use App\Http\Livewire\TagList;
 use App\Http\Livewire\UserEdit;
 use App\Http\Livewire\UserIndex;
@@ -9,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\DepartmentIndex;
 use App\Http\Livewire\DepartmentCreate;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\TicketCreate;
+use App\Http\Livewire\TicketEdit;
+use App\Http\Livewire\TicketIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +25,6 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 
 Route::get('/dashboard', function () {
@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/usuarios', UserIndex::class)->name('user.index');
     Route::get('/usuarios/novo', UserCreate::class)->name('user.create');
     Route::get('/usuarios/editar/{id}', UserEdit::class)->name('user.edit');
+
+    Route::get('/tickets', TicketIndex::class)->name('ticket.index');
+    Route::get('/tickets/novo', TicketCreate::class)->name('ticket.create');
+    Route::get('/tickets/editar/{id}', TicketEdit::class)->name('ticket.edit');
 });
 
 require __DIR__.'/auth.php';
