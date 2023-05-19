@@ -18,8 +18,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="flex min-h-screen flex-col bg-gray-100 font-sans antialiased lg:flex-row">
-    <div x-data="{ open: false }">
+<body class="grid h-screen grid-cols-[auto,1fr] grid-rows-[auto,1fr] bg-gray-100 font-sans antialiased">
+    {{-- menu --}}
+    <div x-data="{ open: false }" class="col-span-2 col-start-1 row-span-1 row-start-1 lg:col-span-1 lg:col-start-1 lg:row-span-2 lg:row-start-1">
         {{-- topbar --}}
         <div class="flex h-16 w-full items-center justify-between bg-white px-4 lg:hidden">
             <div class="flex gap-2">
@@ -36,46 +37,55 @@
             </button>
         </div>
         {{-- navigation --}}
-        <nav :class="{ 'left-0': open }" class="group fixed top-0 -left-64 flex h-screen w-64 flex-grow-0 transform flex-col items-start justify-between overflow-hidden border-r border-gray-100 bg-white transition-all duration-300 lg:relative lg:!left-0 lg:w-20 hover:lg:!w-60">
+        <nav :class="{ 'left-0': open }" class="group fixed top-0 -left-64 flex h-screen w-64 transform flex-col items-start justify-between overflow-hidden border-r border-gray-100 bg-white transition-all duration-300 lg:relative lg:!left-0 lg:w-20 hover:lg:!w-64">
             {{-- top menu items --}}
             <div>
-                <div class="relative mb-4 flex w-60 gap-2 bg-white py-7 px-6">
+                <div class="relative mb-4 flex w-64 gap-2 bg-white px-6 py-7">
                     <x-icon.ticket-solid class="w-7 text-primary-500" />
                     <div class="transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">
                         <p class="text-xl font-bold">TickTick</p>
                         <p class="-mt-2 text-sm text-gray-500 hover:text-primary-500 hover:underline"><a target="_blank" href="https://github.com/MauricioRobertoDev">Por Mauricio Roberto</a></p>
                     </div>
                 </div>
-                <a href="#" class="relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                <a href="#" class="relative flex w-64 gap-4 bg-white py-5 px-7 text-gray-500 hover:text-primary-500">
                     <x-icon.grid class="w-6" />
                     <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Dashboard</p>
                 </a>
-                <a href="#" class="relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
-                    <x-icon.ticket class="w-6" />
-                    <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Tickets</p>
-                </a>
-                <a href="{{ route('user.index') }}" class="{{ request()->routeIs('user.index') ? '!text-primary-500' : '' }}relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
-                    <x-icon.users class="w-6" />
-                    <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Usuários</p>
-                </a>
-                <a href="#" class="relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
-                    <x-icon.log class="w-6" />
-                    <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Histórico</p>
-                </a>
-                <a href="{{ route('department.index') }}" class="{{ request()->routeIs('department.index') ? '!text-primary-500' : '' }} relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
-                    <x-icon.department class="w-6" />
-                    <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Departamentos</p>
-                </a>
-                <a href="{{ route('tag.index') }}" class="{{ request()->routeIs('tag.index') ? '!text-primary-500' : '' }} relative flex w-60 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
-                    <x-icon.tag class="w-6" />
-                    <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Tags</p>
-                </a>
 
+                @unlessrole('does not have this role')
+                    <a href="{{ route('myticket.index') }}" class="{{ request()->routeIs('myticket.index') ? '!text-primary-500' : '' }} relative flex w-64 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                        <x-icon.ticket class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Meus tickets</p>
+                    </a>
+                @endunlessrole
+
+                @role('admin')
+                    <a href="{{ route('ticket.index') }}" class="{{ request()->routeIs('ticket.index') ? '!text-primary-500' : '' }} relative flex w-64 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                        <x-icon.ticket class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Tickets</p>
+                    </a>
+                    <a href="{{ route('user.index') }}" class="{{ request()->routeIs('user.index') ? '!text-primary-500' : '' }} relative flex w-64 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                        <x-icon.users class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Usuários</p>
+                    </a>
+                    <a href="#" class="relative flex w-64 gap-4 bg-white py-5 px-7 text-gray-500 hover:text-primary-500">
+                        <x-icon.log class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Histórico</p>
+                    </a>
+                    <a href="{{ route('department.index') }}" class="{{ request()->routeIs('department.index') ? '!text-primary-500' : '' }} relative flex w-64 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                        <x-icon.department class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Departamentos</p>
+                    </a>
+                    <a href="{{ route('tag.index') }}" class="{{ request()->routeIs('tag.index') ? '!text-primary-500' : '' }} relative flex w-64 gap-4 bg-white px-7 py-5 text-gray-500 hover:text-primary-500">
+                        <x-icon.tag class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Tags</p>
+                    </a>
+                @endrole
             </div>
             {{-- bottom menu items --}}
             <div>
                 {{-- theme --}}
-                <a href="{{ route('profile.edit') }}" class="relative flex h-20 w-60 gap-5 bg-white px-5 py-5 text-gray-500 hover:bg-primary-50 hover:text-primary-500">
+                <a href="{{ route('profile.edit') }}" class="relative flex h-20 w-64 gap-5 bg-white px-5 py-5 text-gray-500 hover:bg-primary-50 hover:text-primary-500">
 
                     @if (auth()->user()->avatar)
                         <img src="{{ asset(auth()->user()->avatar) }}" class="h-10 w-10 flex-grow-0 rounded-md" />
@@ -89,14 +99,19 @@
                     </div>
                 </a>
                 {{-- logout --}}
-                <a href="#" class="relative flex w-60 gap-2 bg-white px-7 py-5 text-gray-500 hover:text-red-500">
-                    <x-icon.logout class="w-6" />
-                    <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Sair</p>
-                </a>
+
+                <form action="{{ route('logout') }}" method='post'>
+                    @csrf
+                    <button type="submit" class="relative flex w-64 gap-2 bg-white py-5 px-7 text-gray-500 hover:text-red-500">
+                        <x-icon.logout class="w-6" />
+                        <p class="font-semibold transition-all duration-300 lg:opacity-0 group-hover:lg:opacity-100">Sair</p>
+                    </button>
+                </form>
             </div>
         </nav>
     </div>
-    <main class="h-screen w-full flex-grow overflow-y-scroll">
+    {{-- content --}}
+    <main class="col-span-2 col-start-1 row-span-1 row-start-2 h-full overflow-y-auto lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1">
         {{ $slot }}
     </main>
     @livewireScripts
