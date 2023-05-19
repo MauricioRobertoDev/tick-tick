@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('subject');
             $table->string('status')->default(Status::OPEN->value);
+            $table->text('description');
             $table->string('priority')->default(Priority::LOW->value);
             $table->foreignIdFor(Department::class)->nullable()->nullOnDelete();
             $table->foreignIdFor(User::class)->cascadeOnDelete();
