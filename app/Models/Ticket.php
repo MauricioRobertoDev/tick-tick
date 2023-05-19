@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tag;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,7 @@ class Ticket extends Model
 
     protected $fillable = [
         'subject',
+        'description',
         'status',
         'priority',
         'department_id',
@@ -46,5 +48,10 @@ class Ticket extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'tag_ticket');
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }
