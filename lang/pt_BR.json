@@ -131,5 +131,8 @@
   "results": "resultados",
   "to": "até",
   "agent": "funcionário",
-  "customer": "cliente"
+  "customer": "cliente",
+  "open" : "aberto",
+  "close" : "fechado",
+  "archived" : "arquivado"
 }
