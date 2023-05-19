@@ -14,14 +14,10 @@ class DepartmentEdit extends Component
 
     public function mount($id)
     {
-        $department = Department::with('agents:id')
-            ->where('id', $id)
-            ->first([
-                'departments.id',
-                'departments.name',
-            ]);
-
-        abort_if(!$department, 404);
+        $department = Department::with('agents:id')->findOrFail($id, [
+            'departments.id',
+            'departments.name',
+        ]);
 
         $this->department_id = $department->id;
         $this->name = $department->name;
